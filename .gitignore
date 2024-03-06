@@ -1,0 +1,4 @@
+.ipynb_checkpoints
+/.venv
+/.pkg-initialized
+/environment.lock.yml
