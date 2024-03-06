@@ -1,3 +1,5 @@
 ipykernel==6.26.0
 ipython==8.17.2
 sympy==1.12
+krotov==1.2.1
+matplotlib
