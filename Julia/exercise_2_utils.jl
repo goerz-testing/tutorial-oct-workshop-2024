@@ -88,14 +88,13 @@ step3 = Question(
       * `E\_0<tab>` becomes `E₀`
       * `\tau<tab>` becomes `τ`
       * `\alpha<tab>` becomes `\alpha`
-      * `\scrE<tab>` becomes `ℰ`
-      * `\phi<tab>\dot<tab>` becomes `ϕ̇`
+      * `\phi<tab>` becomes `ϕ`
 
       You can always paste a particular unicode symbol into the help system
       to see how it can be written:
 
       ```
-      ? ϕ̇
+      ? ϕ
       ```
       """,
     solution="""
@@ -106,14 +105,14 @@ step3 = Question(
       τ = 50.0
       α = 0.001
 
-      ℰ(t) = E₀ * exp(-t^2 / 2τ^2)
-      ϕ̇(t) = α * t
+      Env(t) = E₀ * exp(-t^2 / 2τ^2)
+      dϕ(t) = α * t
       ```
       """,
 )
 
 #=
-H = hamiltonian((H₁, ϕ̇), (H₂, ℰ))
+H = hamiltonian((H₁, dϕ), (H₂, Env))
 
 using QuantumPropagators.Controls: evaluate
 =#
@@ -195,9 +194,9 @@ step7 = Question(
     hint=raw"""
         **Hint**
 
-        * When plotting the function `ℰ`, map it elementwise to the vector `t`
-          using Julia's dot feature (`abs.(ℰ.(t))`). Also normalize to the peak
-          value `maximum(abs.(ℰ.(t)))`
+        * When plotting the function `Env`, map it elementwise to the vector `t`
+          using Julia's dot feature (`abs.(Env.(t))`). Also normalize to the peak
+          value `maximum(abs.(Env.(t)))`
         * Use the `plot` function for the initial curve, giving an array of
           x-values and and array of y-value, and the options like color or
           label as keyword arguments (separated from the positional arguments
@@ -215,8 +214,8 @@ step7 = Question(
         **Solution**:
 
         ```julia
-        E_max = maximum(abs.(ℰ.(t)))
-        plot(t, abs.(ℰ.(t)) / E_max; color="lightgray", label="|ℰ|")
+        E_max = maximum(abs.(Env.(t)))
+        plot(t, abs.(Env.(t)) / E_max; color="lightgray", label="|ℰ|")
         plot!(t, real.(output[1,:]); color="#1f77b4", label="|0⟩")
         plot!(t, real.(output[2,:]); color="#ff7f0e", linestyle=:dash, label="|1⟩")
         plot!(; xlabel="Time", ylabel="Population", legend=:right )
@@ -234,7 +233,7 @@ bonus = Question(
           lists of eigenvalues at each point in time (two eigenvalues at `t`).
           Remember that any function can be mapped to an array by appending a
           dot (`func.(array)` is equivalent to `[func(val) for val in array]`)
-        * Plot the the two eigenvalues over time. Also plot `±ϕ̇(t)` for
+        * Plot the the two eigenvalues over time. Also plot `±dϕ(t)` for
           comparison.
         """,
     solution="""
@@ -244,8 +243,8 @@ bonus = Question(
         H_over_t = [Array(evaluate(H, tval)) for tval in t]
         evals = eigvals.(H_over_t)
 
-        plot(t, t -> -ϕ̇(t)/2; color="grey", label="", linestyle=:dash)
-        plot!(t, t ->  ϕ̇(t)/2; color="grey", linestyle=:dash, label="")
+        plot(t, t -> -dϕ(t)/2; color="grey", label="", linestyle=:dash)
+        plot!(t, t ->  dϕ(t)/2; color="grey", linestyle=:dash, label="")
         plot!(t, [e[1] for e in evals]; color="#1f77b4", label="|0⟩")
         plot!(t, [e[2] for e in evals]; color="#ff7f0e", linestyle=:dash, label="|1⟩")
         plot!(; xlabel="t", ylabel="Eigenenergies" )
