@@ -47,26 +47,18 @@ julia -e 'using Pkg; Pkg.add("IJulia")'
 
 ### Python project initialization
 
-Since the Jupyter application is written in Python, if you have `jupyter`, you already have `python` installed. However, you must still initialize the project environment in which the Python notebooks are executed. If you intend to follow this tutorial only in Julia, you can skip this setup.
+Even though you already have `python` installed by virtue of having the Jupyter applications, you must still initialize the *project environment* in which the Python notebooks are executed. If you intend to follow this tutorial only in Julia, you can skip this setup. Because we will used Python packages that wrap around compiled C++ code, initializing the environment requires the `conda` executable, see the installation instructions for Jupyter above.
 
 On the command line, from the folder containing this tutorial, run
 
 ```
-python -m venv .venv && .venv/bin/python -m pip install -r requirements.txt
+conda env create -p .venv -f environment.yml
 ```
-
-if you are on a Unix system, or
-
-```
-python -m venv .venv && .venv\Scripts\pip install -r requirements.txt
-```
-
-on Windows.
 
 
 ### Julia project initialization
 
-If you intend to follow this tutorial only in Python, you can skip this setup. Assuming you have Julia installed on your system (see above), run the following on the command line, from the folder containing this tutorial:
+Similarly, to execute any of the Julia notebooks, you muse initialize a Julia project environment. If you intend to follow this tutorial only in Python, you can skip this setup. Assuming you have Julia installed on your system (see above), run the following on the command line, from the folder containing this tutorial:
 
 ```
 julia --project=. -e 'using Pkg; Pkg.instantiate()'
@@ -82,6 +74,8 @@ to initialize both the Python and Julia project configuration.
 
 
 ## Notebooks
+
+Assuming you have set up all the prerequisites as described above, start `jupyter lab` from the folder containing this tutorial. If you are on a Unix system and have `make` installed, you may also run `make jupyter-lab`.
 
 ### Part 1 – Light Matter Interaction
 
