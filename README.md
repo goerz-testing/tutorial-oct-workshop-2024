@@ -79,12 +79,13 @@ Assuming you have set up all the prerequisites as described above, start `jupyte
 
 ### Part 1 – Light Matter Interaction
 
-* Exercise 1 – Two Level System ([Python](Python/exercise_1.ipynb), [Julia](Julia/exercise_1.ipynb))
-* Exercise 2 – Two Level System Interacting with a Chirped Laser ([Python](Python/exercise_2.ipynb), [Julia](Julia/exercise_2.ipynb))
+* Exercise 1 – Two Level System ([Python](Python/py_exercise_1.ipynb), [Julia](Julia/jl_exercise_1.ipynb))
+* Exercise 2 – Two Level System Interacting with a Chirped Laser ([Python](Python/py_exercise_2.ipynb), [Julia](Julia/jl_exercise_2.ipynb))
 
 ### Part 2 – Control Parameters
 
-TBD
+* Exercise 3 – Parameter Optimization of Three-Wave Mixing in a Three-Level System ([Python](Python/py_exercise_3a.ipynb), [Julia](Julia/jl_exercise_3a.ipynb))
+
 
 ### Part 3 – Gradient Optimization with Krotov's method and GRAPE
 
