@@ -8,7 +8,7 @@ help:   ## Show this help
 	@grep -E '^([a-zA-Z_-]+):.*## ' $(MAKEFILE_LIST) | awk -F ':.*## ' '{printf "%-20s %s\n", $$1, $$2}'
 
 .pkg-initialized: JuliaProject.toml
-	julia --project=. -e 'import Pkg; Pkg.instantiate()'
+	JULIA_CONDAPKG_BACKEND=Null julia --project=. -e 'import Pkg; Pkg.instantiate()'
 	@touch $@
 
 $(PYTHON): environment.yml
@@ -25,10 +25,10 @@ $(PYTHON): environment.yml
 init: $(PYTHON) .pkg-initialized  ## Create the virtual project environment
 
 jupyter-notebook: $(PYTHON) .pkg-initialized ## Run a Jupyter notebook server
-	JULIA_NUM_THREADS=auto jupyter notebook --no-browser
+	JULIA_NUM_THREADS=auto JULIA_CONDAPKG_BACKEND=Null jupyter notebook --no-browser
 
 jupyter-lab: $(PYTHON) .pkg-initialized  ## Run a Jupyter lab server
-	JULIA_NUM_THREADS=auto jupyter lab --no-browser
+	JULIA_NUM_THREADS=auto JULIA_CONDAPKG_BACKEND=Null jupyter lab --no-browser
 
 clean: ## Remove generated files
 
@@ -46,3 +46,4 @@ distclean: clean unlock ## Restore clean repository state
 	rm -rf .ipynb_checkpoints
 	rm -rf Python/.ipynb_checkpoints
 	rm -rf Julia/.ipynb_checkpoints
+	rm -rf .CondaPkg/

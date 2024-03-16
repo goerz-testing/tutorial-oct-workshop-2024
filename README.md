@@ -12,10 +12,12 @@ This tutorial is a collection of [Jupyter notebooks](https://jupyter.org). The v
 Assuming you have a Miniconda installation (or you have [set up `conda-forge` as your default channel](https://conda-forge.org/docs/user/introduction/#how-can-i-install-packages-from-conda-forge)), running the following command line instruction should install Jupyter into your `base` environment:
 
 ```
-conda install jupyterlab notebook python-localvenv-kernel
+conda install jupyterlab notebook python-localvenv-kernel ipympl=0.9.3
 ```
 
-Note the [`python-localvenv-kernel` package](https://github.com/goerz/python-localvenv-kernel), which is available only in `conda-forge`. If you cannot use the `conda-forge` channel, the package can also be installed into an existing environment [via `pip`](https://github.com/goerz/python-localvenv-kernel?tab=readme-ov-file#installation)
+Note the [`python-localvenv-kernel` package](https://github.com/goerz/python-localvenv-kernel), which is available only in `conda-forge`. If you cannot use the `conda-forge` channel, the package can also be installed into an existing environment [via `pip`](https://github.com/goerz/python-localvenv-kernel?tab=readme-ov-file#installation).
+
+The `ipympl` package is used in some of the notebooks for interactive plots (`%matplotlib widget`). For this to work properly, the `ipympl` package must be installed both the in environment providing the Jupyter application and in the project environment used by the notebook (defined in `environment.yml`), in the same version `0.9.3`. If there is a mismatch, you may see errors when generating plots. However, you will still be able to follow the tutorial with non-interactive plots by removing the `%matplotlib widget` line in any notebook.
 
 To make sure that your Jupyter is set up correctly, run
 
@@ -89,4 +91,4 @@ Assuming you have set up all the prerequisites as described above, start `jupyte
 
 ### Part 3 – Gradient Optimization with Krotov's method and GRAPE
 
-TBD
+* Exercise 4 – State-to-state transfer in a two-level system [Python](Python/py_exercise_4a.ipynb), [Julia](Julia/jl_exercise_4a.ipynb))

@@ -10,5 +10,7 @@ dependencies:
   - python=3.10
   - scipy=1.12.0
   - sympy=1.12.0
+  - ipympl=0.9.3
+  - ipywidgets=8.1.2
   - pip:
     - krotov==1.2.1
