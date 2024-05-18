@@ -107,3 +107,18 @@ If the entry is there, open the file `kernel.json` inside the directory shown by
 Make sure that the `kernel.json` file contains `--project=@.`. This is absolutely essential: it means that every notebook will use the local Julia environment described in the `JuliaProject.toml` (or `Project.toml`) file in the parent folder(s) of any `.ipynb` notebook file.
 
 If the line is missing, add it manually, or [re-install the kernel](#how-do-i-set-up-the-ijulia-kernel-for-jupyter).
+
+## Can I run the tutorial on Binder?
+
+If you cannot set up the tutorial on your own laptop, you can run in on Binder as a last resort:
+
+https://mybinder.org/v2/gh/goerz-testing/tutorial-oct-workshop-2024/HEAD
+
+Please note:
+
+* Binder does not save notebooks. If you disconnect, you will lose progress
+* You may run into resource limitations like the 2GB RAM limit and be disconnected at any time
+* In the Python "Hello World" notebook, ignore any mention of the `python-localvenv-kernel`. Binder is set up to automatically use the default kernel ("Python 3 (ipykernel)"), which has all required dependencies installed
+* Calling Python code from Julia will not work. This affects the visualization on the Bloch sphere in one of the Julia examples. Just ignore any related error messages.
+
+Due to these limitation, you are strongly encouraged to run the tutorial on your local laptop, not on Binder.
