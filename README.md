@@ -108,7 +108,7 @@ Or, from inside a Julia REPL with the tutorial folder as the current working dir
 ```
 using Pkg
 Pkg.activate(".")  # equivalent to starting Julia with `--project=."
-Pkg.instantiate
+Pkg.instantiate()
 ```
 
 The first time you do this, it will precompile a lot of packages. This can take a while (10-15 minutes, maybe more on a older Windows computer). Grab a coffee.
